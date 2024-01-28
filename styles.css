@@ -1,15 +1,14 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Roboto, sans-serif;
     text-align: center;
 }
 
-#subjects-list {
-    margin-top: 20px;
+p {
+    font-size: 20px;
 }
 
 #subjects-list a {
     display: block;
-    margin-bottom: 10px;
     text-decoration: none;
     color: #333;
     font-size: 18px;
@@ -17,5 +16,51 @@ body {
 
 #countdown {
     font-size: 24px;
-    margin-top: 20px;
+    margin-top: 2px;
 }
+
+/* table */
+table, th, td, tr {
+    border: 1px solid;
+    border-collapse: collapse;
+    border-spacing: 10px;
+    text-align: center;
+    padding: 10px;
+  }
+  
+
+table h2 {
+    margin: 0px;
+}
+
+.section {
+    background-color: #ff5e00b4;
+}
+
+th{
+    font-size: 25px;
+}
+
+.centre{
+    display: flex;
+    justify-content: center;
+}
+
+/* Back Button */
+#back-button {
+    position: fixed; /* Fix button position relative to viewport */
+    top: 20px; /* Adjust top position as needed */
+    left: 20px; /* Adjust left position as needed */
+    border: none; /* Remove default border */
+    background-color: #150552; /* Set background color */
+    color: white; /* Set text color */
+    padding: 10px 10px; /* Adjust padding for desired size */
+    border-radius: 50%; /* Make button circular */
+    cursor: pointer; /* Show pointer on hover */
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    display: flex
+  }
+  

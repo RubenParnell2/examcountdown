@@ -1,0 +1,63 @@
+#side-menu.open {
+    height: 100vh; /* Expand to full height when open */
+  }
+
+  #side-menu {
+    position: fixed;
+    top: 55px;
+    left: -250px; /* Set initial position off-screen */
+    width: 250px;
+    height: 100vh;
+    background-color: #150552;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transition: 0.3s;
+    overflow-x: hidden;
+}
+
+#main {
+    transition: 0.3s;
+}
+
+#side-menu h3, .menu-group h3 {
+    color: #150552;
+    padding: 10px;
+    margin-bottom: 0;
+    background-color: #ffffff;
+}
+
+#side-menu h2 {
+    color: #ffffff;
+}
+
+#side-menu a {
+    color: #ffffff;
+    padding: 10px;
+}
+
+#side-menu label {
+    padding: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #dddddd;
+    display: block;
+    transition: 0.3s;
+}
+
+#side-menu label:hover {
+    color: #f1f1f1;
+}
+
+#open-menu-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 40px; /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+    background-color: #150552;
+    border-radius: 50%; /* Make it circular */
+    color: white; /* Adjust text color if needed */
+    text-align: center;
+    line-height: 40px; /* Vertically center the text */
+    cursor: pointer;
+  }

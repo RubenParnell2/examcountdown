@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="menu-styles.css">
+    <title>Exams</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Exams for {{subjectName}}</h1>
+
+<button id="back-button" href="index.html">◄</button>
+<div id="exam-tables" class="centre"></div>
+
+<script src="specificCountdown.js"></script>
+<script>
+const subject = getSubjectFromUrl();
+createSubjectTable(subject);
+
+const h1Element = document.querySelector("h1");
+h1Element.textContent = `Exams for ${subject}:`;
+
+// Select the back button
+const backButton = document.getElementById("back-button");
+
+// Add a click event listener to the button
+backButton.addEventListener("click", () => {
+  // Redirect to the desired page using window.location.href
+  window.location.href = "index.html";
+});
+</script>
+
+</body>
+</html>

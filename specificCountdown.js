@@ -377,10 +377,13 @@ const exams = [
         unitTitle: "Paper 2",
         durationMins: 105,
       }
-    ]
+]
   
-
-// Function to calculate the time until an exam
+function getSubjectFromUrl() {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    return urlSearchParams.get("subject");
+  }
+  
 function timeUntilExam(exam) {
     const examDate = exam.date;
     const examTime = exam.time === "am" ? "09:00" : "13:30"; // Set exam times as specified
@@ -400,114 +403,38 @@ function timeUntilExam(exam) {
     const seconds = Math.floor((differenceInMilliseconds % (1000 * 60)) / (1000));
   
     return `${days} Days, ${hours} Hrs, ${minutes} Mins, ${seconds} Secs`;
-  }
-  
-  // Iterate through the exams and display the time until each exam
-  for (let i = 0; i < exams.length; i++){
-    exam = exams[i]
-    const timeUntil = timeUntilExam(exam);
-    console.log(`${exam.subject} ${exam.unitTitle}: ${timeUntil}`)
-    exams[i].timeTo = timeUntil
-  }
-
-console.log(exams)
-
-function populateCellsWithExamData() {
-// Filter exams to include only upcoming exams
-const upcomingExams = exams.filter((exam) => exam.timeTo !== "Exam has already started or finished");
-
-// Sort upcoming exams by date and time (earliest first)
-upcomingExams.sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    if (dateA > dateB) return -1;
-    if (dateA < dateB) return 1;
-    return a.time.localeCompare(b.time); // Compare times if dates are equal
-});
-
-// Iterate through the upcoming exams and populate table cells
-upcomingExams.forEach((exam) => {
-    exam.timeTo = timeUntilExam(exam);
-    const subject = exam.subject; // Ensure consistent formatting for ID
-
-    const unitCodeId = `unitCode-${subject}`;
-    const unitTitleId = `unitTitle-${subject}`;
-    const durationId = `duration-${subject}`;
-    const dateId = `date-${subject}`;
-    const countdownId = `countdown-${subject}`;
-
-    const unitCodeCell = document.getElementById(unitCodeId);
-    const unitTitleCell = document.getElementById(unitTitleId);
-    const durationCell = document.getElementById(durationId);
-    const dateCell = document.getElementById(dateId);
-    const countdownCell = document.getElementById(countdownId);
-
-    if (countdownCell) {
-        unitCodeCell.textContent = exam.unitCode
-        unitTitleCell.textContent = exam.unitTitle
-        durationCell.textContent = exam.durationMins
-        dateCell.textContent = exam.date
-        countdownCell.textContent = exam.timeTo;
-    }
-
-    // Add code here to populate other cells as needed, using IDs like "unitCode-subject", "duration-subject", etc.
-});
 }
-
-// Call the function when the page loads
-window.onload = populateCellsWithExamData;
-setInterval(populateCellsWithExamData, 1000);
-
-
-
-
-//For each specific subject page:
-
+  
 function createSubjectTable(subject) {
-    // Get reference to the container element for the table
-    const tableContainer = document.getElementById("exam-tables");
-  
-    // Create a new table element
     const table = document.createElement("table");
-    table.classList.add("exam-table"); // Add a class for styling
+    table.classList.add("exam-table");
   
-    // Generate table header row
-    const headerRow = document.createElement("tr");
-    const headerCell1 = document.createElement("th");
-    headerCell1.textContent = "Exam Title";
-    const headerCell2 = document.createElement("th");
-    headerCell2.textContent = "Date & Time";
-    const headerCell3 = document.createElement("th");
-    headerCell3.textContent = "Duration";
-    headerRow.appendChild(headerCell1);
-    headerRow.appendChild(headerCell2);
-    headerRow.appendChild(headerCell3);
-    table.appendChild(headerRow);
+    // Create table headers
+    const headerRow = table.insertRow();
+    headerRow.appendChild(document.createElement("th")).textContent = "Date";
+    headerRow.appendChild(document.createElement("th")).textContent = "Time";
+    headerRow.appendChild(document.createElement("th")).textContent = "Board";
+    headerRow.appendChild(document.createElement("th")).textContent = "Unit Code";
+    headerRow.appendChild(document.createElement("th")).textContent = "Unit Title";
+    headerRow.appendChild(document.createElement("th")).textContent = "Duration";
+    headerRow.appendChild(document.createElement("th")).textContent = "Time Until";
   
-    // Filter exams for the current subject
-    const subjectExams = exams.filter((exam) => exam.subject.toLowerCase() === subject.toLowerCase());
+    // Filter exams for the given subject and create table rows
+    exams
+      .filter((exam) => exam.subject === subject)
+      .forEach((exam) => {
+        const row = table.insertRow();
+        row.insertCell().textContent = exam.date;
+        row.insertCell().textContent = exam.time;
+        row.insertCell().textContent = exam.board;
+        row.insertCell().textContent = exam.unitCode;
+        row.insertCell().textContent = exam.unitTitle;
+        row.insertCell().textContent = `${exam.durationMins} minutes`;
   
-    // For each exam, create a table row and populate cells
-    subjectExams.forEach((exam) => {
-      const row = document.createElement("tr");
-      const cell1 = document.createElement("td");
-      cell1.textContent = exam.unitTitle;
-      const cell2 = document.createElement("td");
-      cell2.textContent = `${exam.date} ${exam.time}`;
-      const cell3 = document.createElement("td");
-      cell3.textContent = `${exam.durationMins} minutes`;
-      row.appendChild(cell1);
-      row.appendChild(cell2);
-      row.appendChild(cell3);
-      table.appendChild(row);
-    });
+        // Calculate and insert time until exam
+        const timeLeft = timeUntilExam(exam);
+        row.insertCell().textContent = `${timeLeft} minutes`;
+      });
   
-    // Append the new table to the container element
-    tableContainer.appendChild(table);
-  }
-  
-  // Get the current subject from the URL or another source
-  const subject = getSubjectFromUrl(); // Replace with your logic to get subject
-  
-  // Create the table for the current subject
-  createSubjectTable(subject);
+    document.getElementById("exam-tables").appendChild(table);
+}
