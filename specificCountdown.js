@@ -433,7 +433,7 @@ function createSubjectTable(subject) {
   
         // Calculate and insert time until exam
         const timeLeft = timeUntilExam(exam);
-        row.insertCell().textContent = `${timeLeft} minutes`;
+        row.insertCell().textContent = `${timeLeft}`;
       });
   
     document.getElementById("exam-tables").appendChild(table);
