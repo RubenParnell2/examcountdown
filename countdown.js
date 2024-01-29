@@ -1,4 +1,4 @@
-import { exams } from 'examsArray.js';
+import { exams } from './examsArray.js';
 
 // Function to calculate the time until an exam
 function timeUntilExam(exam) {
