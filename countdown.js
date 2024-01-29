@@ -1,10 +1,5 @@
 import { exams } from './examsArray.js';
 
-function getSubjectFromUrl() {
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  return urlSearchParams.get("subject");
-}
-
 // Function to calculate the time until an exam
 function timeUntilExam(exam) {
     const examDate = exam.date;
@@ -82,57 +77,3 @@ upcomingExams.forEach((exam) => {
 // Call the function when the page loads
 window.onload = populateCellsWithExamData;
 setInterval(populateCellsWithExamData, 1000);
-
-
-
-
-//For each specific subject page:
-
-function createSubjectTable(subject) {
-    // Get reference to the container element for the table
-    const tableContainer = document.getElementById("exam-tables");
-  
-    // Create a new table element
-    const table = document.createElement("table");
-    table.classList.add("exam-table"); // Add a class for styling
-  
-    // Generate table header row
-    const headerRow = document.createElement("tr");
-    const headerCell1 = document.createElement("th");
-    headerCell1.textContent = "Exam Title";
-    const headerCell2 = document.createElement("th");
-    headerCell2.textContent = "Date & Time";
-    const headerCell3 = document.createElement("th");
-    headerCell3.textContent = "Duration";
-    headerRow.appendChild(headerCell1);
-    headerRow.appendChild(headerCell2);
-    headerRow.appendChild(headerCell3);
-    table.appendChild(headerRow);
-  
-    // Filter exams for the current subject
-    const subjectExams = exams.filter((exam) => exam.subject.toLowerCase() === subject.toLowerCase());
-  
-    // For each exam, create a table row and populate cells
-    subjectExams.forEach((exam) => {
-      const row = document.createElement("tr");
-      const cell1 = document.createElement("td");
-      cell1.textContent = exam.unitTitle;
-      const cell2 = document.createElement("td");
-      cell2.textContent = `${exam.date} ${exam.time}`;
-      const cell3 = document.createElement("td");
-      cell3.textContent = `${exam.durationMins} minutes`;
-      row.appendChild(cell1);
-      row.appendChild(cell2);
-      row.appendChild(cell3);
-      table.appendChild(row);
-    });
-  
-    // Append the new table to the container element
-    tableContainer.appendChild(table);
-  }
-  
-  // Get the current subject from the URL or another source
-  const subject = getSubjectFromUrl();
-  
-  // Create the table for the current subject
-  createSubjectTable(subject);
