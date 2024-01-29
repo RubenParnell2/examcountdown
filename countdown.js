@@ -24,7 +24,7 @@ function timeUntilExam(exam) {
   
   // Iterate through the exams and display the time until each exam
   for (let i = 0; i < exams.length; i++){
-    exam = exams[i]
+    let exam = exams[i]
     const timeUntil = timeUntilExam(exam);
     console.log(`${exam.subject} ${exam.unitTitle}: ${timeUntil}`)
     exams[i].timeTo = timeUntil
