@@ -1,3 +1,5 @@
+import { exams } from 'examsArray.js';
+
 function getSubjectFromUrl() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     return urlSearchParams.get("subject");

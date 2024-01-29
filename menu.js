@@ -1,3 +1,5 @@
+import { exams } from 'examsArray.js';
+
 // menu.js
 
 document.addEventListener('DOMContentLoaded', function () {
