@@ -1,5 +1,10 @@
 import { exams } from './examsArray.js';
 
+function getSubjectFromUrl() {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  return urlSearchParams.get("subject");
+}
+
 // Function to calculate the time until an exam
 function timeUntilExam(exam) {
     const examDate = exam.date;
@@ -127,7 +132,7 @@ function createSubjectTable(subject) {
   }
   
   // Get the current subject from the URL or another source
-  const subject = getSubjectFromUrl(); // Replace with your logic to get subject
+  const subject = getSubjectFromUrl();
   
   // Create the table for the current subject
   createSubjectTable(subject);
