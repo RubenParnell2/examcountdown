@@ -1,4 +1,4 @@
-const exams = [
+export const exams = [
     {
       date: "2024-05-09",
       time: "am",
