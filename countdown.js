@@ -50,20 +50,17 @@ upcomingExams.forEach((exam) => {
     exam.timeTo = timeUntilExam(exam);
     const subject = exam.subject; // Ensure consistent formatting for ID
 
-    const unitCodeId = `unitCode-${subject}`;
     const unitTitleId = `unitTitle-${subject}`;
     const durationId = `duration-${subject}`;
     const dateId = `date-${subject}`;
     const countdownId = `countdown-${subject}`;
 
-    const unitCodeCell = document.getElementById(unitCodeId);
     const unitTitleCell = document.getElementById(unitTitleId);
     const durationCell = document.getElementById(durationId);
     const dateCell = document.getElementById(dateId);
     const countdownCell = document.getElementById(countdownId);
 
     if (countdownCell) {
-        //unitCodeCell.textContent = exam.unitCode
         unitTitleCell.textContent = exam.unitTitle
         durationCell.textContent = exam.durationMins
         dateCell.textContent = exam.date

@@ -25,8 +25,14 @@ table, th, td, tr {
     border-collapse: collapse;
     border-spacing: 10px;
     text-align: center;
-    padding: 5px 5px;
+    padding: 10px 15px;
   }
+
+@media only screen and (max-width: 600px) {
+    table, th, td, tr {
+        padding: 5px;
+      }    
+}
 
 [id*="unitTitle"] {
     font-size: 13px;
@@ -44,8 +50,13 @@ th{
     font-size: 15px;
 }
 
-#subjectsTable {
+#subjectsTable, #exam-tables {
     margin: auto;
+}
+
+.centre {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Back Button */
