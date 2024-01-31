@@ -19,7 +19,7 @@ function timeUntilExam(exam) {
     const minutes = Math.floor((differenceInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((differenceInMilliseconds % (1000 * 60)) / (1000));
   
-    return `${days} Days, ${hours} Hrs, ${minutes} Mins, ${seconds} Secs`;
+    return `${days}d, ${hours}h, ${minutes}m, ${seconds}s`;
   }
   
   // Iterate through the exams and display the time until each exam
@@ -63,7 +63,7 @@ upcomingExams.forEach((exam) => {
     const countdownCell = document.getElementById(countdownId);
 
     if (countdownCell) {
-        unitCodeCell.textContent = exam.unitCode
+        //unitCodeCell.textContent = exam.unitCode
         unitTitleCell.textContent = exam.unitTitle
         durationCell.textContent = exam.durationMins
         dateCell.textContent = exam.date

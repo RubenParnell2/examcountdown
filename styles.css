@@ -4,14 +4,14 @@ body {
 }
 
 p {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 #subjects-list a {
     display: block;
     text-decoration: none;
     color: #333;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 #countdown {
@@ -25,9 +25,12 @@ table, th, td, tr {
     border-collapse: collapse;
     border-spacing: 10px;
     text-align: center;
-    padding: 10px;
+    padding: 5px 5px;
   }
-  
+
+[id*="unitTitle"] {
+    font-size: 13px;
+}
 
 table h2 {
     margin: 0px;
@@ -38,12 +41,11 @@ table h2 {
 }
 
 th{
-    font-size: 25px;
+    font-size: 15px;
 }
 
-.centre{
-    display: flex;
-    justify-content: center;
+#subjectsTable {
+    margin: auto;
 }
 
 /* Back Button */
